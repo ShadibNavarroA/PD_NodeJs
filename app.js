@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const routerUser = require("./routers/users.routes");    
+const routerUser = require("./routers/router");    
 const initDB = require('./config/db');
 const bodyParser = require('body-parser');
 const User = require("./Data_Base/users");

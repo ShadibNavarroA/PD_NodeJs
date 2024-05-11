@@ -1,18 +1,33 @@
-const express = require("express");
-const router = express.Router();
+const User = require('../Data_Base/users');
+const QueryFactory  = require("../Data_Base/getData")
 
-router.post("/",(req, res)=>{
-    const {username, password} = req.body;
 
-    res.send({
+async function getdb() {
+    try {  
+      const userQuery = QueryFactory.createQuery(User);
+      const result = await userQuery.findByName('Humanito');
+      console.log(result);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+
+
+const userController = {
+    get: (req, res) => {
+        console.log();console.log("////////////////////////Modelo-Vista-Controlador///////////////////////////")
+        getdb().result
+        res.send("Humanito");
+    },
+    login: (req, res) => {
+        console.log();console.log("////////////////////////Modelo-Vista-Controlador///////////////////////////")
+        const {username, password} = req.body;
+        res.send({
         User: username,
         Pass: password
     });
-});
-
-router.put("/",(req, res)=>{
-    res.send({data: "User Upsate"});
-});
-
-
-module.exports = router;
+    }
+};
+  
+module.exports = userController;
