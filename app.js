@@ -4,7 +4,7 @@ const routerUser = require("./routers/users.routes");
 const initDB = require('./config/db');
 const bodyParser = require('body-parser');
 const User = require("./Data_Base/users");
-const getbd = require("./Data_Base/getParameter")
+const QueryFactory  = require("./Data_Base/getData")
 const { addDataToTable } = require("./Data_Base/putData");
 
 
@@ -28,7 +28,6 @@ const newUser = new User({
     rol: 'H',
     key: 'KeyH'
 });
-
 addDataToTable(User, newUser)
 //console.log("////////////////////////////////////////////////////////////////"); console.log()
 
@@ -36,9 +35,20 @@ addDataToTable(User, newUser)
 
 
 
-console.log();console.log("////////////////////////Factory Method///////////////////////////")
-
-console.log("////////////////////////////////////////////////////////////////"); console.log()
+//console.log();console.log("////////////////////////Factory Method///////////////////////////")
+async function getdb() {
+    try {  
+      const userQuery = QueryFactory.createQuery(User);
+      const result = await userQuery.findByName('Humanito');
+      console.log();console.log("////////////////////////Factory Method///////////////////////////")
+      console.log(result);
+      console.log("////////////////////////////////////////////////////////////////"); console.log()
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+getdb();
+//console.log("////////////////////////////////////////////////////////////////"); console.log()
 
 
 
