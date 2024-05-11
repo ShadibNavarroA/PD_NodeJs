@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const User = require("./Data_Base/users");
 const QueryFactory  = require("./Data_Base/getData")
 const { addDataToTable } = require("./Data_Base/putData");
+const NewHumanito = require("./config/NewHumanito");
 
 
 
@@ -52,7 +53,9 @@ getdb();
 
 
 
-
+console.log();console.log("////////////////////////Decorador///////////////////////////")
+NewHumanito();
+console.log("////////////////////////////////////////////////////////////////"); console.log()
 
 
 app.use(bodyParser.urlencoded({extended:false}));
